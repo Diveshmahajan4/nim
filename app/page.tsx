@@ -19,6 +19,7 @@ import {
   EMAIL,
   SOCIAL_LINKS,
 } from './data'
+import { WarpBackground } from '@/components/wrap-background'
 
 const VARIANTS_CONTAINER = {
   hidden: { opacity: 0 },
@@ -124,8 +125,6 @@ function MagneticSocialLink({
 }
 
 export default function Personal() {
-  
-
   return (
     <motion.main
       className="space-y-24"
@@ -133,7 +132,6 @@ export default function Personal() {
       initial="hidden"
       animate="visible"
     >
-      
       <motion.section
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
@@ -183,7 +181,7 @@ export default function Personal() {
               className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
               size={64}
             />
-            <div className="relative flex h-full w-full items-center justify-center rounded-[6px] bg-white px-3 py-2 dark:bg-zinc-950">
+            <div className="relative flex h-full w-full items-center justify-center rounded-[6px] bg-white px-3 py-2 dark:bg-zinc-900">
               See More
               <span>
                 <ChevronRight className="h-5 w-5" />
@@ -208,10 +206,10 @@ export default function Personal() {
               key={job.id}
             >
               <Spotlight
-                className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
+                className="from-blue-900 via-blue-800 to-blue-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
                 size={64}
               />
-              <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-zinc-950">
+              <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-zinc-900">
                 <div className="relative flex w-full flex-row justify-between">
                   <div>
                     <h4 className="font-normal dark:text-zinc-100">
@@ -239,7 +237,7 @@ export default function Personal() {
         <div className="flex flex-col space-y-0">
           <AnimatedBackground
             enableHover
-            className="h-full w-full rounded-lg bg-zinc-100 dark:bg-zinc-900/80"
+            className="h-full w-full rounded-lg bg-zinc-100 dark:bg-zinc-800/80"
             transition={{
               type: 'spring',
               bounce: 0,
@@ -273,7 +271,7 @@ export default function Personal() {
                 className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
                 size={64}
               />
-              <div className="relative flex h-full w-full items-center justify-center rounded-[6px] bg-white px-3 py-2 dark:bg-zinc-950">
+              <div className="relative flex h-full w-full items-center justify-center rounded-[6px] bg-white px-3 py-2 dark:bg-zinc-900">
                 See More
                 <span>
                   <ChevronRight className="h-5 w-5" />
@@ -282,6 +280,23 @@ export default function Personal() {
             </Link>
           </div>
         </div>
+      </motion.section>
+
+      <motion.section
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+      >
+        <WarpBackground>
+          <div className="bg-white py-8 px-8 text-start text-zinc-900 rounded-lg dark:bg-zinc-900 dark:text-white border border-zinc-200 dark:border-zinc-700">  
+            <p className='text-lg font-bold'>Want to hire me as a freelancer? Let's discuss.</p>
+            <p>Drop your message and let's discuss about your project.</p>
+            {/* <button className='my-3'>
+            <MagneticSocialLink link={'#'}>
+              Contact Now
+            </MagneticSocialLink>
+            </button> */}
+          </div>
+        </WarpBackground>
       </motion.section>
 
       <motion.section
@@ -303,6 +318,7 @@ export default function Personal() {
           ))}
         </div>
       </motion.section>
+
     </motion.main>
   )
 }
