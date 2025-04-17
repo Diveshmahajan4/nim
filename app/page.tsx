@@ -1,6 +1,6 @@
 'use client'
 import { motion } from 'motion/react'
-import { XIcon } from 'lucide-react'
+import { ChevronRight, XIcon } from 'lucide-react'
 import { Spotlight } from '@/components/ui/spotlight'
 import { Magnetic } from '@/components/ui/magnetic'
 import {
@@ -124,6 +124,8 @@ function MagneticSocialLink({
 }
 
 export default function Personal() {
+  
+
   return (
     <motion.main
       className="space-y-24"
@@ -131,6 +133,7 @@ export default function Personal() {
       initial="hidden"
       animate="visible"
     >
+      
       <motion.section
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
@@ -149,7 +152,7 @@ export default function Personal() {
       >
         <h3 className="mb-5 text-lg font-medium">Selected Projects</h3>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-          {PROJECTS.map((project) => (
+          {PROJECTS.slice(0, 4).map((project) => (
             <div key={project.name} className="space-y-2">
               <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
                 <ProjectVideo src={project.video} />
@@ -169,6 +172,24 @@ export default function Personal() {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="mt-8 text-center">
+          <Link
+            href="/projects"
+            className="relative inline-block overflow-hidden rounded-lg bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
+          >
+            <Spotlight
+              className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
+              size={64}
+            />
+            <div className="relative flex h-full w-full items-center justify-center rounded-[6px] bg-white px-3 py-2 dark:bg-zinc-950">
+              See More
+              <span>
+                <ChevronRight className="h-5 w-5" />
+              </span>
+            </div>
+          </Link>
         </div>
       </motion.section>
 
@@ -243,6 +264,23 @@ export default function Personal() {
               </Link>
             ))}
           </AnimatedBackground>
+          <div className="mt-8 text-center">
+            <Link
+              href="/projects"
+              className="relative inline-block overflow-hidden rounded-lg bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
+            >
+              <Spotlight
+                className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
+                size={64}
+              />
+              <div className="relative flex h-full w-full items-center justify-center rounded-[6px] bg-white px-3 py-2 dark:bg-zinc-950">
+                See More
+                <span>
+                  <ChevronRight className="h-5 w-5" />
+                </span>
+              </div>
+            </Link>
+          </div>
         </div>
       </motion.section>
 

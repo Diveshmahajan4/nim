@@ -29,48 +29,81 @@ type SocialLink = {
 
 export const PROJECTS: Project[] = [
   {
-    name: 'Motion Primitives Pro',
+    name: 'Build With AI',
     description:
-      'Advanced components and templates to craft beautiful websites.',
-    link: 'https://pro.motion-primitives.com/',
+      'A collection of 10K+ AI tools and resources to help you build better products.',
+    link: 'https://buildwithai.co.in/',
     video:
       'https://res.cloudinary.com/read-cv/video/upload/t_v_b/v1/1/profileItems/W2azTw5BVbMXfj7F53G92hMVIn32/newProfileItem/d898be8a-7037-4c71-af0c-8997239b050d.mp4?_a=DATAdtAAZAA0',
     id: 'project1',
   },
   {
-    name: 'Motion Primitives',
-    description: 'UI kit to make beautiful, animated interfaces.',
-    link: 'https://motion-primitives.com/',
+    name: 'Drooul',
+    description: 'A digital marketplace for UI Kits, Templates and Icons.',
+    link: 'https://github.com/Diveshmahajan4/drooul',
     video:
       'https://res.cloudinary.com/read-cv/video/upload/t_v_b/v1/1/profileItems/W2azTw5BVbMXfj7F53G92hMVIn32/XSfIvT7BUWbPRXhrbLed/ee6871c9-8400-49d2-8be9-e32675eabf7e.mp4?_a=DATAdtAAZAA0',
     id: 'project2',
   },
+  {
+    name: 'Urbancasa',
+    description: 'A furniture catalog website with a modern design.',
+    link: 'https://urbancasa.vercel.app/',
+    video:
+      'https://res.cloudinary.com/de7hzefas/video/upload/v1744887555/Urbancasa_trim_ikwljm.mp4',
+    id: 'project3',
+  },
+  {
+    name: 'AnimeHub',
+    description: 'Anime streamin platform with clean and minimal design.',
+    link: 'https://github.com/Diveshmahajan4/AnimeHub',
+    video:
+      'https://res.cloudinary.com/read-cv/video/upload/t_v_b/v1/1/profileItems/W2azTw5BVbMXfj7F53G92hMVIn32/XSfIvT7BUWbPRXhrbLed/ee6871c9-8400-49d2-8be9-e32675eabf7e.mp4?_a=DATAdtAAZAA0',
+    id: 'project4',
+  },
+  {
+    name: 'Chatter',
+    description: 'A blogging platform for developers to share their thoughts.',
+    link: 'https://github.com/Diveshmahajan4/Chatter-A-Blogging-Website',
+    video:
+      'https://res.cloudinary.com/read-cv/video/upload/t_v_b/v1/1/profileItems/W2azTw5BVbMXfj7F53G92hMVIn32/XSfIvT7BUWbPRXhrbLed/ee6871c9-8400-49d2-8be9-e32675eabf7e.mp4?_a=DATAdtAAZAA0',
+    id: 'project5',
+  },
+  {
+    name: 'Project Pilot',
+    description: 'A project management app for freelancers and teams.',
+    link: 'https://github.com/Diveshmahajan4/Project-Pilot',
+    video:
+      'https://res.cloudinary.com/read-cv/video/upload/t_v_b/v1/1/profileItems/W2azTw5BVbMXfj7F53G92hMVIn32/XSfIvT7BUWbPRXhrbLed/ee6871c9-8400-49d2-8be9-e32675eabf7e.mp4?_a=DATAdtAAZAA0',
+    id: 'project5',
+  },
+
 ]
 
 export const WORK_EXPERIENCE: WorkExperience[] = [
   {
-    company: 'Reglazed Studio',
-    title: 'CEO',
-    start: '2024',
+    company: 'Freelance',
+    title: 'Software Engineer',
+    start: 'Feb 2025',
     end: 'Present',
-    link: 'https://ibelick.com',
+    link: '',
+    id: 'work3',
+  },
+  {
+    company: 'IIT Hyderabad',
+    title: 'Research Intern',
+    start: 'August 2024',
+    end: 'Jan 2025',
+    link: '',
     id: 'work1',
   },
   {
-    company: 'Freelance',
-    title: 'Design Engineer',
-    start: '2022',
-    end: '2024',
-    link: 'https://ibelick.com',
+    company: 'Deutsch Bank AG',
+    title: 'Software Engineer Intern',
+    start: 'May 2024',
+    end: 'July 2024',
+    link: '',
     id: 'work2',
-  },
-  {
-    company: 'Freelance',
-    title: 'Front-end Developer',
-    start: '2017',
-    end: 'Present',
-    link: 'https://ibelick.com',
-    id: 'work3',
   },
 ]
 
@@ -100,20 +133,20 @@ export const BLOG_POSTS: BlogPost[] = [
 export const SOCIAL_LINKS: SocialLink[] = [
   {
     label: 'Github',
-    link: 'https://github.com/ibelick',
+    link: 'https://github.com/Diveshmahajan4',
   },
   {
     label: 'Twitter',
-    link: 'https://twitter.com/ibelick',
+    link: 'https://twitter.com/diveshtwt',
   },
   {
     label: 'LinkedIn',
-    link: 'https://www.linkedin.com/in/ibelick',
+    link: 'https://www.linkedin.com/in/divesh-mahajan',
   },
   {
     label: 'Instagram',
-    link: 'https://www.instagram.com/ibelick',
+    link: 'https://www.instagram.com/diveshmahajan_',
   },
 ]
 
-export const EMAIL = 'your@email.com'
+export const EMAIL = 'diveshmahajan04@gmail.com'
