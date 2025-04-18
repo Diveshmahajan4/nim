@@ -1,0 +1,135 @@
+---
+title: "Create Your First Pull Request"
+summary: "Make your first Open Source Contribution with opening a PR"
+publishedAt: "2023-20-07"
+timeToRead: "4 min"
+image: "https://cdn.hashnode.com/res/hashnode/image/upload/v1690738593925/d4ce004f-47cc-4fbd-b5f5-9d04fb175624.png?w=1600&h=840&fit=crop&crop=entropy&auto=compress,format&format=webp"
+---
+
+<Cover
+  src="https://cdn.hashnode.com/res/hashnode/image/upload/v1690738593925/d4ce004f-47cc-4fbd-b5f5-9d04fb175624.png?w=1600&h=840&fit=crop&crop=entropy&auto=compress,format&format=webp"
+  alt="Computer image"
+/>
+
+## Make your first Open Source Contribution with opening a PR
+# What is a Pull Request?
+
+A pull request is a feature provided by [GitHub](https://github.com/), [GitLab](https://gitlab.com/), and [Bitbucket](https://bitbucket.org/) for collaborative software development. It provides a mechanism for developers to propose changes to a codebase and for other team members to review, discuss, and eventually merge those changes into the main project repository.
+
+Pull requests play a crucial role in fostering a collaborative and controlled approach to managing code changes in open-source projects, as well as in teams working on shared codebases.
+
+# How to create a PR?
+
+1. **Fork the Repository:**
+    
+    - Go to the GitHub repository you want to contribute to.
+        
+    - Click the "Fork" button in the top-right corner of the repository page. This will create a copy (fork) of the repository under your GitHub account.
+        
+        ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1690737909558/ea9ff228-88fb-4337-8562-0109c4a56496.png)
+2. **Clone the Forked Repository**:
+    
+    - After forking, go to your forked repository on GitHub.
+        
+    - Click the "Code" button, and copy the repository URL.
+        
+    - Open git bash, navigate to the directory where you want to store the local copy of the repository and clone it using the command below.
+        
+        ```bash
+        git clone https://github.com/your-username/repository-name.git
+        ```
+        
+3. **Create a New Branch:**
+    
+    - Change into the cloned repository's directory.
+        
+        ```bash
+        cd repository-name
+        ```
+        
+    - It's good practice to create a new branch for each feature or bug fix. This keeps the main branch clean and makes it easier to manage changes.
+        
+        ```bash
+        git checkout -b new-branch-name
+        ```
+        
+4. **Make and Commit Your Changes:**
+    
+    - Make the necessary changes to the files in your local repository using a code editor or any other development tool.
+        
+        ```bash
+        # Stage the changes
+        git add .
+        
+        # Commit the changes
+        git commit -m "Descriptive commit message"
+        ```
+        
+5. **Push the Changes to Your Fork:**
+    
+    - After committing your changes, push them to the new branch on your forked repository.
+        
+    - Now you will be able to see your changes in the forked repository.
+        
+        ```bash
+        git push origin new-branch-name
+        ```
+        
+6. **Create the Pull Request:**
+    
+    - Visit your forked repository on GitHub and switch to the branch you just pushed.
+        
+    - Click on the "Compare & pull request" button next to the branch selection dropdown.
+        
+7. **Review the Pull Request:**
+    
+    - Give your pull request a descriptive title and provide additional context or information in the comment box.
+        
+    - Review the changes you made to ensure everything looks good.
+        
+8. **Submit the Pull Request:**
+    
+    - Once you're satisfied with your changes and comments, click on the "Create pull request" button.
+        
+9. **Discussion and Review:**
+    
+    - Your pull request is now submitted, and other contributors can review your changes, leave comments, or suggest modifications.
+        
+    - Be prepared to address feedback and make additional changes if necessary.
+        
+10. **Merge the Pull Request (if accepted):**
+    
+    - If your changes are approved by the repository maintainers and meet the project's guidelines, they will merge your pull request into the main repository.
+        
+    - After the pull request is merged, your changes become a part of the main codebase.
+        
+11. **Keep Your Fork in Sync (Optional):**
+    
+    - If your pull request takes some time to be merged, the main repository may have new changes in the meantime. To keep your fork up to date refer following commands:
+        
+        ```bash
+        git remote add upstream https://github.com/original-repository/repository-name.git
+        git fetch upstream
+        git checkout main
+        git merge upstream/main
+        git push origin main
+        ```
+        
+    - This will update your fork's main branch with the latest changes from the original repository.
+        
+
+Congratulations🎉! You've successfully created a pull request on GitHub. Remember that the pull request process may vary slightly based on the project's guidelines, but these steps are the general procedure for contributing to most repositories on GitHub.
+
+---
+
+**That was it for this blog 🙏, I encourage you to explore more into its** [**documentation**](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork)**,** [**tutorials**](https://www.youtube.com/watch?v=jRLGobWwA3Y)**, and resources available online.**
+
+**I hope you enjoyed it. Do comment with your thoughts about this blog.**
+
+If you’re a regular reader, thank you, you’re a big part of the reason I’ve been able to share my learnings with you.
+
+You can connect with me on [**Twitter**](https://twitter.com/diveshtwt) and [**LinkedIn**](https://www.linkedin.com/in/divesh-mahajan-43a585216/).
+
+**Follow me for more such blogs** 😊.
+
+**Happy Coding✌️!!**

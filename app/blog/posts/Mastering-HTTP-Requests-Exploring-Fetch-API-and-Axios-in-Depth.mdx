@@ -1,0 +1,281 @@
+---
+title: Mastering HTTP Requests Exploring Fetch API and Axios in Depth
+summary: A comprehensive guide on HTTP Requests, Fetch API and Axios
+publishedAt: "2023-21-06"
+timeToRead: "8 min"
+image: "https://cdn.hashnode.com/res/hashnode/image/upload/v1687364257603/e0b6bf89-c1c8-4752-9578-c895f66db457.png?w=1600&h=840&fit=crop&crop=entropy&auto=compress,format&format=webp"
+---
+
+<Cover
+  src="https://cdn.hashnode.com/res/hashnode/image/upload/v1687364257603/e0b6bf89-c1c8-4752-9578-c895f66db457.png?w=1600&h=840&fit=crop&crop=entropy&auto=compress,format&format=webp"
+  alt="Computer image"
+/>
+
+# Introduction
+
+Today, Modern Web Apps or Websites communicate with each using HTTP requests, so it becomes crucial for us to learn what HTTP requests are and which libraries help us to make HTTP requests efficiently.
+
+In this blog, we will be learning HTTP requests and how we can make HTTP requests using Fetch API and Axios. We will also be comparing Fetch and Axios and discussing which one is better.
+
+# What are HTTP requests?
+
+HTTP stands for **Hypertext Transfer Protocol.** These are the requests messages sent by a client (such as a web browser or a mobile app) to a server to retrieve or manipulate data. HTTP requests are an essential part of client-server communication on the World Wide Web(www).
+
+HTTP defines a set of **request methods** to indicate the desired action to be performed for a given resource. These methods are sometimes also referred to as **HTTP verbs**. Now let's discuss some of these HTTP verbs.
+
+- **GET:** This request is used to retrieve a resource from the server. When a browser loads a web page or an image, it typically sends a GET request to the server to fetch the corresponding resource.
+    
+- **POST:** This request is used to submit data to the server, often used when submitting forms or sending data to be processed. For example, when you fill out a registration form on a website and click the submit button, a POST request is sent to the server with the form data.
+    
+- **PUT:** This request is used to update or create a resource on the server. It sends data to the server to replace the existing resource or create a new one at the specified location.
+    
+- **DELETE:** This request is used to delete a specified resource on the server. It instructs the server to remove the resource at the given URL.
+    
+- **PATCH:** This request is used to partially update a resource on the server. It sends data to modify only specific fields or properties of the resource.
+    
+
+These request types are part of the HTTP protocol and are specified in the request line of the HTTP message. The request line includes the method (GET, POST, etc.), the URL of the resource, and the HTTP version.
+
+Additionally, HTTP requests can include headers, which provide additional information about the request, such as the user agent, accepted content types, authentication credentials, and more. Request headers are sent in key-value pairs and are included in the HTTP request message.
+
+In summary, HTTP requests are messages sent by clients to servers to request resources, submit data, update or delete resources, and perform various actions on the web.
+
+Now, we will learn how to make HTTP requests in javascript using **Fetch APIs** and **Axios**.
+
+# What are Fetch APIs?
+
+Fetch API is a **built-in** web API in modern browsers that allows you to make HTTP requests from JavaScript. It provides a native and standardized way to perform asynchronous network requests, replacing older methods like XMLHttpRequest. It is a powerful and flexible API that simplifies working with network requests and handling responses.
+
+## How to use Fetch APIs?
+
+- ### **GET Request using Fetch API:**
+    
+    ```javascript
+    fetch('https://demo.api.com/data')
+      .then(response => response.json())
+      .then(data => {
+        // Process the retrieved data
+        console.log(data);
+      })
+      .catch(error => {
+        // Handle any errors that occur during the request
+        console.error(error);
+      });
+    ```
+    
+    Here, we have used the `fetch()` function to send a GET request to the specified URL. We chain the `.then()` method to handle the response by parsing it as JSON. Then, we can work with the retrieved `data` in the subsequent `.then()` block.
+    
+- ### **POST Request using Fetch API:**
+    
+    ```javascript
+    const data = {
+      name: 'divesh',
+      email: 'diveshmahajan04@gmail.com'
+    };
+    fetch('https://demo.api.com/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+      .then(response => response.json())
+      .then(data => {
+        // Handle the response data
+        console.log(data);
+      })
+      .catch(error => {
+        // Handle any errors that occur during the request
+        console.error(error);
+      });
+    ```
+    
+    Here, we specify the HTTP method as `'POST'` in the request options. We also set the `Content-Type` header to `'application/json'` since we're sending JSON data in the request body. The `body` property contains the data to be sent, which is first converted to JSON using `JSON.stringify()`.
+    
+- ### **PUT Request using Fetch API:**
+    
+    ```javascript
+    const data = {
+      name: 'Divesh Mahajan', // Updated Name
+      email: 'diveshmahajan04@gmail.com'
+    };
+    fetch('https://demo.api.com/users/123', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+      .then(response => response.json())
+      .then(data => {
+        // Handle the response data
+        console.log(data);
+      })
+      .catch(error => {
+        // Handle any errors that occur during the request
+        console.error(error);
+      });
+    ```
+    
+    Here, we specify the HTTP method as `'PUT'` to indicate that we want to update a resource. We provide the updated data in the request body, which is again converted to JSON using `JSON.stringify()`.
+    
+- ### **DELETE Request using Fetch API:**
+    
+    ```javascript
+    fetch('https://demo.api.com/users/123', {
+      method: 'DELETE',
+      headers: {
+        'Authorization': 'Bearer your_token'
+      }
+    })
+      .then(response => {
+        if (response.ok) {
+          // Resource deleted successfully
+          console.log('Resource deleted');
+        } else {
+          // Handle error if resource deletion failed
+          console.error('Resource deletion failed');
+        }
+      })
+      .catch(error => {
+        // Handle any errors that occur during the request
+        console.error(error);
+      });
+    ```
+    
+    Here, we use the `fetch()` function to send a DELETE request to the specified URL ([`https://demo.api.com/users/123`](https://api.example.com/users/123) in this case) to delete a specific resource. We set the HTTP method to `'DELETE'` in the request options.
+    
+
+Note that the Fetch API is built on Promises, so you can use **async/await** syntax for more readable code if your environment supports it. If you want to learn more about **async/await** you can check out this [blog](https://diveshm.hashnode.dev/callbacks-promises-and-asyncawait-in-javascript).
+
+I hope you are following till now 😊, Let's learn about Axios.🚀
+
+# What is Axios?
+
+Axios is a popular JavaScript library that provides an easy-to-use interface for making HTTP requests from a web browser or Node.js. It simplifies the process of sending asynchronous HTTP requests and handling responses.
+
+To start using Axios, you need to include it in your project. You can do this by including the Axios library via a script tag in the browser or by installing it as a dependency in your Node.js project using a package manager like npm or yarn.
+
+```javascript
+// Using Script Tag
+// Download the Axios library from a CDN or from the Axios GitHub repository.
+// Save the Axios JavaScript file in your project directory.
+<script src="path/to/axios.js"></script>
+// Using npm 
+npm install axios
+// Using yarn 
+yarn add axios
+```
+
+Remember to import Axios into your JavaScript file before using it in a Node.js environment.
+
+```javascript
+const axios = require('axios');
+// or ES6
+import axios from 'axios'
+```
+
+## How to use Axios?
+
+- **GET Request using Axios:**
+    
+    ```javascript
+    axios.get('https://demo.api.com/data')
+      .then(response => {
+        // Handle the response data
+        console.log(response.data);
+      })
+      .catch(error => {
+        // Handle any errors that occur during the request
+        console.error(error);
+      });
+    ```
+    
+    Here, we use the `axios.get()` method to send a GET request to the specified URL ([`https://api.example.com/data`](https://api.example.com/data) in this case). The `.then()` block is used to handle the response, where [`response.data`](http://response.data) contains the retrieved data. The `.catch()` block is used to handle any errors that occur during the request.
+    
+- **POST Request using Axios:**
+    
+    ```javascript
+    const data = {
+      name: 'divesh',
+      email: 'diveshmahajan04@gmail.com'
+    };
+    
+    axios.post('https://demo.api.com/users', data)
+      .then(response => {
+        // Handle the response data
+        console.log(response.data);
+      })
+      .catch(error => {
+        // Handle any errors that occur during the request
+        console.error(error);
+      });
+    ```
+    
+    Here, we use the [`axios.post`](http://axios.post)`()` method to send a POST request to the specified URL ([`https://demo.api.com/users`](https://api.example.com/users) in this case) with the provided data object. The response data can be accessed in the `.then()` block using [`response.data`](http://response.data).
+    
+- **PUT Request using Axios:**
+    
+    ```javascript
+    const data = {
+      name: 'divesh mahajan', //updated name
+      email: 'diveshmahajan04@gmail.com' 
+    };
+    
+    axios.put('https://demo.api.com/users/123', data)
+      .then(response => {
+        // Handle the response data
+        console.log(response.data);
+      })
+      .catch(error => {
+        // Handle any errors that occur during the request
+        console.error(error);
+      });
+    ```
+    
+    Here, we use the `axios.put()` method to send a PUT request to the specified URL ([`https://demo.api.com/users/123`](https://api.example.com/users/123) in this case) with the provided data object. The response data can be accessed in the `.then()` block using [`response.data`](http://response.data).
+    
+- **DELETE Request using Axios:**
+    
+    ```javascript
+    axios.delete('https://demo.api.com/users/123')
+      .then(response => {
+        // Handle the response data
+        console.log(response.data);
+      })
+      .catch(error => {
+        // Handle any errors that occur during the request
+        console.error(error);
+      });
+    ```
+    
+    Here, we use the `axios.delete()` method to send a DELETE request to the specified URL ([`https://demo.api.com/users/123`](https://api.example.com/users/123) in this case). The response data can be accessed in the `.then()` block using [`response.data`](http://response.data).
+    
+
+Axios also allows you to customize requests by setting headers, handling request/response interceptors, and configuring timeouts. It provides a convenient and powerful API for handling HTTP requests in your JavaScript applications.
+
+To learn more about Axios you can follow its official [documentation](https://axios-http.com/docs/intro).
+
+# Fetch vs Axios
+
+Both Fetch API and Axios are capable libraries for making HTTP requests in JavaScript, but they have some differences in terms of features, browser support, and ease of use.
+
+Fetch API is a native browser API that is supported by modern browsers. However, it may not be fully supported in older browsers without the use of polyfills. Axios, on the other hand, is a library that works consistently across different browsers, including older versions.
+
+Axios provides a simpler and more intuitive API compared to Fetch. It supports method chaining and provides convenient features like interceptors, request cancellation, and request/response transformations out of the box. Fetch API has a lower-level API and requires additional work for tasks like request/response transformations.
+
+Axios supports request and response interceptors, which allow you to modify requests or responses globally. This feature is not available in Fetch API natively and requires additional coding.
+
+Axios provides built-in support for uploading files and track upload/download progress, making it easier to handle file-related operations. Fetch API can handle file uploads, but progress tracking requires additional coding.
+
+In summary, Axios offers a more user-friendly API with convenient features like interceptors and automatic error handling. It has better browser support, including older versions, and provides an overall smoother development experience. Fetch API, on the other hand, is a native browser API, has a smaller bundle size, and is suitable for simple use cases or when size is a concern.
+
+**That was it for this blog 🙏. I know it was quite a lengthy blog but I tried to explain each concept shortly and concisely. I hope you enjoyed it. Do comment with your thoughts about this blog.**
+
+If you’re a regular reader, thank you, you’re a big part of the reason I’ve been able to share my learnings with you.
+
+You can connect with me on [**Twitter**](https://twitter.com/diveshtwt) and [**LinkedIn**](https://www.linkedin.com/in/divesh-mahajan-43a585216/).
+
+**Follow me for more such blogs** 😊.
+
+**Happy Coding✌️!!**

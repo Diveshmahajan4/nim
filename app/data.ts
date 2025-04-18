@@ -27,11 +27,19 @@ type SocialLink = {
   link: string
 }
 
+type Hackathon = {
+  name: string
+  desc: string
+  url: string
+  image: string
+  wonFor: string
+}
+
 export const PROJECTS: Project[] = [
   {
     name: 'Build With AI',
     description:
-      'A collection of 10K+ AI tools and resources to help you build better products.',
+      'A collection of 10K+ AI tools to help you build better products.',
     link: 'https://buildwithai.co.in/',
     video:
       'https://res.cloudinary.com/read-cv/video/upload/t_v_b/v1/1/profileItems/W2azTw5BVbMXfj7F53G92hMVIn32/newProfileItem/d898be8a-7037-4c71-af0c-8997239b050d.mp4?_a=DATAdtAAZAA0',
@@ -150,3 +158,20 @@ export const SOCIAL_LINKS: SocialLink[] = [
 ]
 
 export const EMAIL = 'diveshmahajan04@gmail.com'
+
+export const HACKATHONS :Hackathon[] = [
+  {
+    name: 'ETH Mumbai 2024',
+    desc: 'We created ConsultX, a revolutionary global network of trusted experts, offering a secure and decentralized consultation platform.',
+    url: 'https://devfolio.co/projects/consultx-2934',
+    image: 'https://res.cloudinary.com/de7hzefas/image/upload/v1745001006/hack2_oezwmg.jpg',
+    wonFor: 'Best Project Built on Lumio'
+},
+{
+    name: 'ETH India 2023',
+    desc: 'We created Creditsco, a NFT collateral lending platform which empowers individuals to secure on-chain loans on NFTs with enhanced monitoring and security.',
+    url: 'https://devfolio.co/projects/creditsco-baa9',
+    image: 'https://res.cloudinary.com/de7hzefas/image/upload/v1745002029/hack3_qfmxdn.jpg',
+    wonFor: 'Sponsors price by Scroll'
+},
+]

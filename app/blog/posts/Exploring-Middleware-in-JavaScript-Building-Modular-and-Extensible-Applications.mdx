@@ -1,0 +1,151 @@
+---
+title: Exploring Middleware in JavaScript Building Modular and Extensible Applications
+summary: "A simple explanation of Middleware in JavaScript"
+publishedAt: "2023-20-07"
+timeToRead: "4 min"
+image: "https://cdn.hashnode.com/res/hashnode/image/upload/v1689401455329/28494dc7-2bea-4458-b0f7-62bb27221fa8.png?w=1600&h=840&fit=crop&crop=entropy&auto=compress,format&format=webp"
+---
+
+<Cover
+  src="https://cdn.hashnode.com/res/hashnode/image/upload/v1689401455329/28494dc7-2bea-4458-b0f7-62bb27221fa8.png?w=1600&h=840&fit=crop&crop=entropy&auto=compress,format&format=webp"
+  alt="Computer image"
+/>
+
+# Introduction
+
+If you have worked with Express.js or any other modern web framework, you may have heard of the term Middlewares. In this blog, we will be discussing the term middleware, how middleware is used, and what are its use cases.
+
+# What is middleware?
+
+Middleware acts as a bridge, facilitating the seamless exchange of information between various parts of an application. It provides a layer of functionality that sits between two components, intercepting requests, and enabling modifications or enhancements before they reach their final destination.
+
+Imagine a busy restaurant where orders need to pass through multiple stations before reaching the customer's table. The chef prepares the dish, the waiter adds garnishes, and the cashier ensures the payment is received. Similarly, middlewares in JavaScript applications handle specific tasks and pass the baton to the next middleware in line or the final endpoint.
+
+To grasp the essence of middleware, let's consider a scenario of handling HTTP requests. When a client sends a request to a server, it goes through several stages before generating a response. Middleware enters the picture at this crucial junction, intercepting the request and performing specific actions or modifications before it reaches its intended destination, such as a route handler or endpoint.
+
+# How to implement middleware?
+
+Here's an example of a simple **middleware** function that logs the incoming request method and URL.
+
+```javascript
+const express = require('express');
+const app = express();
+
+app.use((req, res, next) => {
+  console.log(`Received ${req.method} request at ${req.url}`);
+  next();
+});
+
+// Route handlers
+app.get('/', (req, res) => {
+  res.send('Hello, world!');
+});
+
+app.listen(3000, () => {
+  console.log('Server is listening on port 3000');
+});
+```
+
+In this example, the `app.use()` function registers the middleware function, which logs the request information and then calls `next()` to pass control to the next middleware in the chain or the route handler.
+
+Now we will see how we can make our own middleware, let us consider a typical **authentication** example where the user needs to be authenticated before accessing any routes or resources.
+
+```javascript
+const express = require('express');
+const app = express();
+
+// Middleware for authentication
+const authenticate = (req, res, next) => {
+  // Check if user is authenticated
+  if (req.isAuthenticated()) {
+    // User is authenticated, proceed to the next middleware or route handler
+    return next();
+  }
+
+  // User is not authenticated, redirect to the login page
+  res.redirect('/login');
+};
+
+// Protected route
+app.get('/dashboard', authenticate, (req, res) => {
+  res.send('Welcome to the dashboard!');
+});
+
+// Login route
+app.get('/login', (req, res) => {
+  res.send('Please login');
+});
+
+// Simulating user authentication
+app.post('/login', (req, res) => {
+  // Perform authentication logic
+  // ...
+
+  // Set the user as authenticated 
+  // (using a hypothetical isAuthenticated() function)
+  req.isAuthenticated = true;
+
+  // Redirect to the dashboard
+  res.redirect('/dashboard');
+});
+
+app.listen(3000, () => {
+  console.log('Server is listening on port 3000');
+});
+```
+
+Here, the `authenticate` middleware function checks if the user is authenticated before allowing access to the protected `/dashboard` route. The middleware function receives the `req`, `res`, and `next` parameters, as is the convention for Express middleware.
+
+Inside the `authenticate` function, we check if the user is authenticated using a hypothetical `isAuthenticated()` function. If the user is authenticated, we call `next()` to proceed to the next middleware or route handler in the chain. Otherwise, we redirect the user to the login page using `res.redirect('/login')`.
+
+This example demonstrates how middleware can be utilized for authentication in a web application. By incorporating the `authenticate` middleware into the route definition, we ensure that only authenticated users can access the protected route, while unauthorized users are redirected to the login page.
+
+Middleware can also be used for **error handling**. Here's an example that catches errors and sends an appropriate error response to the client.
+
+```javascript
+const errorHandler = (err, req, res, next) => {
+  console.error(err);
+  res.status(500).send('Internal Server Error');
+};
+
+app.use(errorHandler);
+
+// Route handler that throws an error
+app.get('/error', (req, res, next) => {
+  const error = new Error('Something went wrong');
+  next(error);
+});
+```
+
+In this example, the `errorHandler` middleware function is registered using `app.use()`. Whenever an error occurs in any middleware or route handler, it is passed to this middleware function, which logs the error and sends a generic error response with a 500 status code.
+
+# Where middleware is used?
+
+1. **Authentication and Authorization:** Middleware is frequently used to handle authentication and authorization in web applications. It can intercept incoming requests, verify user credentials, and grant or deny access to protected routes or resources based on authorization rules.
+    
+2. **Logging and Request Debugging:** Middleware can log important information about incoming requests and outgoing responses, such as request method, URL, headers, and timestamps. This helps in debugging, monitoring application activity, and auditing.
+    
+3. **Error Handling:** Middleware plays a crucial role in error handling. It can catch and process errors that occur during the request-response cycle, generate appropriate error responses and log detailed error information for debugging purposes.
+    
+4. **Session Management and Cookies:** Middleware can handle session management by setting and managing session cookies, maintaining session data, and ensuring user state persistence across multiple requests.
+    
+
+These are the few use cases of Middleware in JavaScript. The versatility of middleware allows for a wide range of use cases, enabling developers to enhance application functionality, separate concerns, and build robust and extensible software.
+
+# Conclusion
+
+Middleware plays a crucial role in JavaScript applications, offering numerous advantages that enhance functionality, modularity, and extensibility. Its ability to intercept requests, modify data, and facilitate communication between components enables developers to create modular, reusable, and highly customizable code. By harnessing the power of middleware, developers can streamline development, improve code quality, and enhance the functionality of their applications.
+
+---
+
+**That was it for this blog 🙏, I encourage you to explore more into its** [**documentation**](https://expressjs.com/en/guide/using-middleware.html)**,** [**tutorials**](https://www.youtube.com/watch?v=lY6icfhap2o)**, and resources available online.**
+
+**I hope you enjoyed it. Do comment with your thoughts about this blog.**
+
+If you’re a regular reader, thank you, you’re a big part of the reason I’ve been able to share my learnings with you.
+
+You can connect with me on [**Twitter**](https://twitter.com/diveshtwt) and [**LinkedIn**](https://www.linkedin.com/in/divesh-mahajan-43a585216/).
+
+**Follow me for more such blogs** 😊.
+
+**Happy Coding✌️!!**

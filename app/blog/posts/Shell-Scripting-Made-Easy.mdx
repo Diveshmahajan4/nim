@@ -1,0 +1,322 @@
+---
+title: Shell Scripting Made Easy
+summary: A Beginner's Guide to Automating Tasks on Linux and Unix Systems
+publishedAt: "2023-08-27"
+timeToRead: "7 min"
+image: "https://cdn.hashnode.com/res/hashnode/image/upload/v1685018591360/497d5043-1e27-4d4c-89be-434339640c5b.png?w=1600&h=840&fit=crop&crop=entropy&auto=compress,format&format=webp"
+---
+
+<Cover
+  src="https://cdn.hashnode.com/res/hashnode/image/upload/v1685018591360/497d5043-1e27-4d4c-89be-434339640c5b.png?w=1600&h=840&fit=crop&crop=entropy&auto=compress,format&format=webp"
+  alt="Computer image"
+/>
+
+
+# A Beginner's Guide to Automating Tasks on Linux and Unix Systems
+## Introduction
+
+In this blog, we will be discussing Shell Scripting the most important concept while learning Linux. The prerequisites are you should know about Basic Linux Commands to interact with the terminal. So, to learn basic Linux commands you can refer to this [blog](https://superaayush.hashnode.dev/get-started-with-linux). Also, you should have Linux or Unix based operating system. Windows users can install Linux-based Virtual Machine or use a cloud-based service called [Linode](https://www.linode.com/).
+
+_Now, Let's get started 🚀!_
+
+## What is Shell?
+
+The term "shell" is a program that encloses the OS kernel in an outer layer or shell, protecting the user from the complexities of the underlying architecture. Shell is a command line tool that helps us to interact with the operating system by entering and executing commands. It acts as an intermediary between the user and the OS.
+
+Following are some different types of shells used on Linux.
+
+1. Bourne shell (sh)
+    
+2. Bourne-Again shell (bash)
+    
+3. C shell (csh)
+    
+4. Korn shell (ksh)
+    
+5. Z shell (zsh)
+    
+6. Fish shell (fish)
+    
+
+In this blog, we will use bash as its the most popular shell.
+
+![Linux Operating System](https://prepbytes-misc-images.s3.ap-south-1.amazonaws.com/assets/1674819879587-Linux%20Operating%20System1.png)
+
+As you are clear with the idea of shell, Shell Scripting is nothing but a process of writing scripts, programs, and commands using a shell in our case bash.
+
+## Why use Shell Scripting?
+
+Shell scripting is used for a variety of tasks, including system administration, network management, and application development.
+
+Following are some use cases of shell scripting :
+
+1. **Automation**: Shell scripting can be used to automate time-consuming processes like file transfers, backups, and system maintenance.
+    
+2. **Customization:** Shell scripting allows users to customize and extend the functionality of their command-line interfaces.
+    
+3. **Flexibility:** Shell scripting helps users to develop complicated programs that execute various tasks.
+    
+4. **Portability:** Shell scripts are a portable solution for automation and management tasks as they can be executed on any Unix or Linux machine.
+    
+
+## Let's write our first bash script !😃
+
+**Step 1:** Create a `script.sh` file and use the `nano` command to edit it. There are also other ways to edit files but I find `nano` is the easiest.
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1679777023447/eb3ca649-165b-4021-bf37-786504739037.jpeg)
+
+After executing these commands you will enter the editor where we will write the bash script.
+
+**Step 2:** First we'll write shebang or hashbang, `#!` it is used to tell the kernel which interpreter should be used to run the bash script. This `#!/bin/bash` statement tells the kernel to interpret it as a bash script. Then we'll print hello world as follows.
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1679859709446/059e6673-08fa-426f-8abd-36d35f61bd04.jpeg)
+
+**Step 3:** Now, to save this file hit `CTRL + x` then hit `y` for yes and finally press enter and your file is saved.
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1679859726403/1d77f9b1-a05a-447d-9113-743e5159c7b5.jpeg)![](https://cdn.hashnode.com/res/hashnode/image/upload/v1679859734891/5613892f-adca-4cb9-b6c2-7f59e53e5476.jpeg)
+
+**Step 4:** Finally we'll run `bash script.sh` to run the file you'll able to see `"Hello World"` in the terminal.
+
+![](https://cdn.hashnode.com/res/hashnode/image/upload/v1679860026786/54429d0b-b61d-4efd-ab19-04c9c6e84304.jpeg)
+
+Hurray! 🤩 you just wrote your first bash script. Now let's dive deeper into bash scripting.
+
+## Variables
+
+Variables are used to store data that can be used in shell scripts. To create a variable, simply assign a value to it using the `=` sign.
+
+```bash
+#!/bin/bash
+NAME="John"
+echo "Hello, $NAME!"
+```
+
+The `$` sign is used to refer to the value of a variable. When you include the `$` sign before the variable name, the shell interpreter replaces it with the value of the variable.
+
+1. **Arithmetic operators:** These operators are used to perform mathematical operations on numeric values. The most common arithmetic operators are `+` (addition), `-` (subtraction), `*` (multiplication), `/` (division), `%` (modulus), and `**` (exponentiation).
+    
+    ```bash
+    #!/bin/bash
+    # declare two variables
+    a=10
+    b=5
+    
+    # perform arithmetic operations
+    sum=$((a + b))
+    difference=$((a - b))
+    product=$((a * b))
+    quotient=$((a / b))
+    remainder=$((a % b))
+    power=$((a ** b))
+    
+    # print the results
+    echo "sum: $sum"
+    echo "difference: $difference"
+    echo "product: $product"
+    echo "quotient: $quotient"
+    echo "remainder: $remainder"
+    echo "power: $power"
+    ```
+    
+2. **Comparison operators:** These operators are used to compare values and return a Boolean value (`true` or `false`) based on the comparison. The most common comparison operators are `-eq` (equal to), `-ne` (not equal to), `-gt` (greater than), `-lt` (less than), `-ge` (greater than or equal to), and `-le` (less than or equal to).
+    
+    The below script also gives you an idea about `if-else` conditional statements.
+    
+    ```bash
+    #!/bin/bash
+    # declare two variables
+    a=10
+    b=5
+    
+    # compare the values of the variables
+    if [ $a -eq $b ]
+    then
+      echo "a is equal to b"
+    else
+      echo "a is not equal to b"
+    fi
+    
+    if [ $a -gt $b ]
+    then
+      echo "a is greater than b"
+    else
+      echo "a is not greater than b"
+    fi
+    
+    if [ $a -lt $b ]
+    then
+      echo "a is less than b"
+    else
+      echo "a is not less than b"
+    fi
+    ```
+    
+3. **Logical operators:** These operators are used to combine multiple conditions and return a Boolean value (`true` or `false`) based on the result of the combination. The most common logical operators are `&&` (logical AND), `||` (logical OR), and `!` (logical NOT).
+    
+    ```bash
+    #!/bin/bash
+    # declare two variables
+    a=10
+    b=5
+    
+    # check if a is greater than b AND less than 20
+    if [ $a -gt $b ] && [ $a -lt 20 ]
+    then
+      echo "a is greater than b and less than 20"
+    else
+      echo "a is not greater than b or not less than 20"
+    fi
+    
+    # check if a is less than b OR greater than 20
+    if [ $a -lt $b ] || [ $a -gt 20 ]
+    then
+      echo "a is less than b or greater than 20"
+    else
+      echo "a is not less than b and not greater than 20"
+    fi
+    
+    # check if a is NOT equal to b
+    if [ ! $a -eq $b ]
+    then
+      echo "a is not equal to b"
+    else
+      echo "a is equal to b"
+    fi
+    ```
+    
+4. **String Operators:** These operators are used to compare two strings and return a Boolean value (`true` or `false`) based on the comparison. The most common string comparison operators are `=` (equal to) and `!=` (not equal to).
+    
+    ```bash
+    #!/bin/bash
+    # declare two variables
+    name1="Rahul"
+    name2="Rohit"
+    
+    # compare the values of the variables
+    if [ $name1 = $name2 ]
+    then
+      echo "The names are the same"
+    else
+      echo "The names are different"
+    fi
+    
+    if [ $name1 != $name2 ]
+    then
+      echo "The names are different"
+    else
+      echo "The names are the same"
+    fi
+    ```
+    
+
+## Conditionals
+
+Conditional statements are used to make decisions based on certain conditions. There are two main conditional statements in shell scripting: `if-else` and `case`.
+
+1. `if-else` statement is executed when the specific condition is met.
+    
+    ```bash
+    #!/bin/bash
+    num=15
+    # check if the number is greater than 10
+    if [ $num -gt 10 ]
+    then
+       echo "The number is greater than 10"
+    else
+       echo "The number is less than 10"
+    fi
+    ```
+    
+2. `case` statement is used to execute a block of code based on the value of a variable.
+    
+    ```bash
+    #!/bin/bash
+    fruit="apple"
+    # check the value of the variable
+    case $fruit in
+      apple)
+        echo "This is an apple"
+        ;;
+      banana)
+        echo "This is a banana"
+        ;;
+      *)
+        echo "I don't know what this is"
+        ;;
+    esac
+    ```
+    
+
+## Loops
+
+1. `for` loop is used to iterate over a list of items and execute a block of code for each item in the list.
+    
+    ```bash
+    #!/bin/bash
+    # use a for loop to print the numbers 1 to 5
+    for i in 1 2 3 4 5
+    do
+      echo $i
+    done
+    ```
+    
+2. `while` loop is used to execute a block of code repeatedly as long as a certain condition is true.
+    
+    ```bash
+    #!/bin/bash
+    # use a while loop to print the numbers 1 to 5
+    i=1
+    while [ $i -le 5 ]
+    do
+      echo $i
+      i=$((i+1))
+    done
+    ```
+    
+
+## Functions
+
+Functions are used to group a set of commands and give them a name. Functions can be reused multiple times in a script or even in other scripts.
+
+```bash
+#!/bin/bash
+# define a function to print a greeting
+sayhello() {
+  echo "Hello, $1!"
+}
+# call the sayhello function with a name parameter
+sayhello "Rahul"
+```
+
+In this example, we define a function called `sayhello` that takes one parameter (`$1`). Now, let's see how to define a function with two parameters.
+
+```bash
+#!/bin/bash
+# define a function to add two numbers
+add() {
+  result=$(($1 + $2))
+  return $result
+}
+
+# call the add function and save the result
+add 5 3
+result=$?
+
+echo "5 + 3 = $result"
+```
+
+In this example, we define a function called `add` that takes two parameters (`$1` and `$2`).
+
+Functions are a powerful feature of shell scripting and can be used to simplify complex scripts and make them more modular and reusable.
+
+## Conclusion
+
+In this blog, we covered all the fundamentals of shell scripting. I will recommend you write all of the above scripts on your own also tweak a little bit with these scripts and make your own awesome bash scripts. If you want to learn more advanced concepts in shell scripts you can follow this [playlist.](https://www.youtube.com/watch?v=SPwyp2NG-bE&list=PLIhvC56v63IKioClkSNDjW7iz-6TFvLwS)
+
+_In case I have missed something or you have some advice or suggestions do let me know in the comment section._
+
+You can connect with me on [Twitter](https://twitter.com/diveshtwt).
+
+Follow me for more such blogs 😊.
+
+**Happy Coding✌️!!**

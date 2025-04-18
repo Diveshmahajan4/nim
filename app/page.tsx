@@ -3,13 +3,6 @@ import { motion } from 'motion/react'
 import { ChevronRight, XIcon } from 'lucide-react'
 import { Spotlight } from '@/components/ui/spotlight'
 import { Magnetic } from '@/components/ui/magnetic'
-import {
-  MorphingDialog,
-  MorphingDialogTrigger,
-  MorphingDialogContent,
-  MorphingDialogClose,
-  MorphingDialogContainer,
-} from '@/components/ui/morphing-dialog'
 import Link from 'next/link'
 import { AnimatedBackground } from '@/components/ui/animated-background'
 import {
@@ -20,6 +13,8 @@ import {
   SOCIAL_LINKS,
 } from './data'
 import { WarpBackground } from '@/components/wrap-background'
+import { TextEffect } from '@/components/ui/text-effect'
+import ProjectVideo from '@/components/project-video'
 
 const VARIANTS_CONTAINER = {
   hidden: { opacity: 0 },
@@ -44,51 +39,7 @@ type ProjectVideoProps = {
   src: string
 }
 
-function ProjectVideo({ src }: ProjectVideoProps) {
-  return (
-    <MorphingDialog
-      transition={{
-        type: 'spring',
-        bounce: 0,
-        duration: 0.3,
-      }}
-    >
-      <MorphingDialogTrigger>
-        <video
-          src={src}
-          autoPlay
-          loop
-          muted
-          className="aspect-video w-full cursor-zoom-in rounded-xl"
-        />
-      </MorphingDialogTrigger>
-      <MorphingDialogContainer>
-        <MorphingDialogContent className="relative aspect-video rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50">
-          <video
-            src={src}
-            autoPlay
-            loop
-            muted
-            className="aspect-video h-[50vh] w-full rounded-xl md:h-[70vh]"
-          />
-        </MorphingDialogContent>
-        <MorphingDialogClose
-          className="fixed top-6 right-6 h-fit w-fit rounded-full bg-white p-1"
-          variants={{
-            initial: { opacity: 0 },
-            animate: {
-              opacity: 1,
-              transition: { delay: 0.3, duration: 0.1 },
-            },
-            exit: { opacity: 0, transition: { duration: 0 } },
-          }}
-        >
-          <XIcon className="h-5 w-5 text-zinc-500" />
-        </MorphingDialogClose>
-      </MorphingDialogContainer>
-    </MorphingDialog>
-  )
-}
+
 
 function MagneticSocialLink({
   children,
@@ -132,6 +83,36 @@ export default function Personal() {
       initial="hidden"
       animate="visible"
     >
+      <div className=' flex items-center justify-between w-full'>
+        <div>
+          <Link
+            href="/"
+            className="text-2xl font-medium text-black dark:text-white"
+          >
+            Divesh Mahajan
+          </Link>
+          <TextEffect
+            as="p"
+            preset="fade"
+            per="char"
+            className="text-zinc-600 dark:text-zinc-500"
+            delay={0.5}
+          >
+            Software Engineer
+          </TextEffect>
+        </div>
+        {/* My avatar in circle */}
+        <div>
+          <Link href="/about">
+            <img
+              src="/avatar.jpeg"
+              alt="Divesh Mahajan"
+              className="h-15 w-15 rounded-full border border-zinc-200 dark:border-zinc-700"
+            />
+          </Link>
+        </div>
+      </div>
+
       <motion.section
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}

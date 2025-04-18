@@ -1,0 +1,122 @@
+---
+title: A Comprehensive guide to String, StringBuilder and StringBuffer
+summary: "Learn the differences between String, StringBuilder, and StringBuffer in Java and when to use each one."
+image: "https://cdn.hashnode.com/res/hashnode/image/stock/unsplash/szrJ3wjzOMg/upload/4fc45be0e513e6fa37884dfc0bb0b19f.jpeg?w=1600&h=840&fit=crop&crop=entropy&auto=compress,format&format=webp"
+timeToRead: "4 min"
+publishedAt: "2023-03-09"
+---
+<Cover
+  src="https://cdn.hashnode.com/res/hashnode/image/stock/unsplash/szrJ3wjzOMg/upload/4fc45be0e513e6fa37884dfc0bb0b19f.jpeg?w=1600&h=840&fit=crop&crop=entropy&auto=compress,format&format=webp"
+  alt="Computer image"
+/>
+
+
+_While learning Strings in java we come across various classes like String, StringBuilder and StringBuffer which are not available in other languages. In this article, we will learn the basic difference between these classes and where to use which class._
+
+_So, Let's start_
+
+### What is a String?
+
+A _String_ is a sequence of characters. But unlike some other languages that implement string as a character array.Java implements string as an object of type **String.** Now, when you create a String, you are creating a string that cannot be changed _( i.e Immutable)_. So, whenever you change a string, a new String object is created that contains the changes.
+
+```java
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        String name = "Jhon"; // Initialization of String 
+    }
+}
+```
+
+### Some Common Operations are performed on Strings.
+
+1. Concatenation: Joining two or more strings using the `+` operator.
+    
+2. Length: Finding the number of characters present in the string using the `length()`method.
+    
+3. Substring: Extracting the portion of a string using the `substring()` method.
+    
+4. Comparison: String can be compared using the `equals()` method or the `compareTo()` method.
+    
+5. Searching: The position of the substring within a string can be found using the `indexOf()` method.
+    
+
+### What are StringBuffer and StringBuilder ?
+
+The StringBuffer and StringBuilder classes are defined in java.lang package. So, they are available to all programs automatically. As the string is Immutable in java, we use StringBuffer and StringBuilder Classes to create mutable strings in java. These classes provide several methods to append, insert, delete, and replace characters in the sequence.
+
+```java
+        String name = "Jhon"; // Initialization of String 
+        // You can create StringBuffer in following two ways.
+        StringBuffer name1 = new StringBuffer(name); // Converting string to StringBuffer.
+        StringBuilder name2 = new StringBuilder(name);// Converting string to StringBuilder.
+```
+
+### Some Common Operations are performed on StringBuilder and StringBuffer.
+
+1. Append: Appends the specified string to the end of the sequence using `append(String str)`.
+    
+    ```java
+            StringBuffer name = new StringBuffer("Jhon");
+            name.append(" Wick");
+            System.out.println(name.toString());
+            // Output: Jhon Wick
+    ```
+    
+2. Insert: Inserts the specified string at the specified position in the sequence using `insert(int index, String str).`
+    
+    ```java
+            StringBuffer name = new StringBuffer("Jhon");
+            name.insert(5, " Wick");
+            System.out.println(name.toString());
+            // Output: Jhon Wick
+    ```
+    
+3. Delete: Deletes the characters in the sequence between specified start and end positions using `delete(int start, int end)`.
+    
+    ```java
+            StringBuffer name = new StringBuffer("Jhon Wick");
+            name.delete(4, 9);
+            System.out.println(name.toString());
+            // Output: Jhon
+    ```
+    
+4. Replace: Replaces the characters in the sequence between the specified start and end positions with the specified string using `replace(int start, int end, String str)`.
+    
+    ```java
+            StringBuffer name = new StringBuffer("Jhon");
+            name.replace(5, 9 , "");
+            System.out.println(name.toString());
+            // Output: Jhon
+    ```
+    
+5. Reverse: Reverse the order of the characters in the sequence using `reverse()`.
+    
+    ```java
+            StringBuffer name = new StringBuffer("Jhon");
+            name.reverse();
+            System.out.println(name.toString());
+            // Output: kciW nohJ
+    ```
+    
+
+### Difference between StringBuilder and StringBuffer.
+
+StringBuffer is designed to be _thread-safe_, which means it can be accessed by multiple threads simultaneously without causing any errors or data corruption but at the cost of performance. On the other hand, StringBuilder is similar to StringBuffer but does not provide thread safety and synchronization. So, if you are in a single-threaded environment or don’t care about thread safety, you should use StringBuilder. Otherwise, use StringBuffer for thread-safe operations. Performance wise String builder performs better than StringBuffer even in the case of a single-threaded environment.
+
+### Which one to use 🤔?
+
+1. If you don't want to perform major changes in the String use a simple String Object.
+    
+2. If you want to perform multiple operations on a string that can only be accessed from a single thread, using a StringBuilder is good enough.
+    
+3. If you want to perform multiple operations on a string in a multithreaded environment use StringBuffer.
+    
+
+_Hopefully, I was able to make my point._
+
+_In case I have missed something or you have some advice or suggestions do let me know in the comment section._
+
+_You can also reach out to me_ [_Here_](https://twitter.com/diveshtwt)_._
+
+Happy Coding ✌️

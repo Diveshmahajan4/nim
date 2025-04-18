@@ -1,0 +1,335 @@
+---
+title: An Introduction to GraphQL Building Better APIs with GraphQL
+summary: A beginner-friendly guide to what GraphQL is and how it helps in creating flexible APIs.
+image: "https://cdn.hashnode.com/res/hashnode/image/upload/v1688760388159/dbfa9434-7a0f-42d3-825b-ea5bef82fc2f.png?w=1600&h=840&fit=crop&crop=entropy&auto=compress,format&format=webp"
+timeToRead: "8 min"
+publishedAt: "2023-07-09"
+---
+
+<Cover
+  src="https://cdn.hashnode.com/res/hashnode/image/upload/v1688760388159/dbfa9434-7a0f-42d3-825b-ea5bef82fc2f.png?w=1600&h=840&fit=crop&crop=entropy&auto=compress,format&format=webp"
+  alt="Computer image"
+/>
+
+# Introduction
+
+In today's interconnected digital world, applications and services need to communicate and exchange data seamlessly. Therefore we need APIs to bridge between different software components, enabling them to interact and share information in a standardized manner.
+
+In recent years [**GraphQL**](https://graphql.org/)**🚀** has emerged as a powerful alternative to traditional RESTful APIs, revolutionizing the way developers design and consume web APIs.
+
+In this blog, we will be discussing, What is GraphQL, How to write GraphQL queries and finally will be comparing GraphQL APIs and RESTful APIs. If you don't know about APIs you can refer to this [**blog**](https://www.redhat.com/en/topics/api/what-are-application-programming-interfaces) and then continue reading👇.
+
+# What is GraphQL?
+
+GraphQL is a query language and runtime for APIs that enables efficient data fetching and manipulation. It was created by Facebook in 2012 and later open-sourced in 2015. It provides a flexible and efficient approach to building APIs by allowing clients to request exactly the data they need, reducing over-fetching and under-fetching of data.
+
+### ✒️Key features of GraphQL?
+
+- **Declarative querying**: GraphQL allows clients to specify the exact data they need in a declarative manner. Clients can send queries to the GraphQL server, describing the shape and structure of the desired response. This eliminates the problem of over-fetching and under-fetching data commonly seen in RESTful APIs.
+    
+- **Strong typing and schema**: GraphQL has a strong type system that enables precise and self-documenting data structures. With GraphQL schemas, developers can define the structure of their data and its relationships. This helps in avoiding miscommunication between frontend and backend developers and provides powerful tooling for automatic code generation, documentation, and validation.
+    
+- **Single endpoint**: Unlike RESTful APIs that often require multiple endpoints to retrieve different resources, GraphQL provides a single endpoint for all data requests. This simplifies client-server communication and reduces network overhead.
+    
+- **Efficient data fetching**: GraphQL allows clients to retrieve multiple resources in a single request, reducing the number of round trips between the client and server. Clients can specify nested data requirements, and the GraphQL server takes care of fetching and composing the data from multiple sources.
+    
+- **Mutations for data manipulation**: GraphQL provides a standardized way to perform data manipulation operations, such as creating, updating, and deleting data. Mutations allow clients to modify the server-side data while adhering to a consistent API design.
+    
+- **Real-time updates with subscriptions**: GraphQL supports real-time data updates through subscriptions. Clients can subscribe to specific data changes and receive updates in real time. This makes GraphQL well-suited for applications that require real-time collaboration or data streaming.
+    
+- **Language-agnostic**: GraphQL is programming language-agnostic, meaning it can be used with any programming language to build both server-side and client-side applications. There are numerous GraphQL client libraries and server implementations available for various programming languages, making it easy to integrate GraphQL into new or existing projects.
+    
+
+Now, let's understand basic terminologies like schemas, queries and mutations in GraphQL.
+
+## 📃What is Schema?
+
+A schema is a central component that defines the capabilities of the API and serves as a contract between the client and the server. It defines the structure of the available data and the operations that can be performed on that data. The schema is written using the GraphQL Schema Definition Language (SDL).
+
+By defining the schema, GraphQL provides a clear and standardized structure for the available data and operations in the API. This helps both clients and servers understand and communicate effectively, avoiding confusion and enabling powerful tooling for schema validation and automatic code generation.
+
+### ✏️How to write a schema?
+
+```graphql
+type Post {
+  id: ID!
+  title: String!
+  content: String!
+  author: Author!
+}
+
+type Author {
+  id: ID!
+  name: String!
+  posts: [Post!]!
+}
+
+type Query {
+  post(id: ID!): Post
+  author(id: ID!): Author
+  posts: [Post!]!
+}
+```
+
+Here, we have three types: `Post`, `Author`, and `Query`
+
+The `Post` type represents a blog post and has fields such as `id`, `title`, `content`, and `author`. The `id` field is of type `ID!`, indicating it's a non-nullable identifier. The `title` and `content` fields are of type `String!`, denoting non-nullable strings. The `author` field represents the author of the post and references the `Author` type.
+
+The `Author` type represents the author of a blog post and has fields such as `id` and `name`. Similar to `Post`, `id` is of type `ID!` and `name` is of type `String!`. Additionally, the `posts` field is an array of `Post` objects indicate that an author can have multiple posts.
+
+The `Query` type defines the available queries that clients can make to fetch data. In this case, we have queries to retrieve a specific post by `id`, an author by `id`, and a list of all posts. These queries return the corresponding types (`Post` or `Author`).
+
+As you have successfully learned to create a schema👍, let's explore how we query the specific data we want.
+
+## 📃What are Queries?
+
+In GraphQL, clients can send queries to the server to request specific data. At its simplest, GraphQL is about asking for specific fields on objects.
+
+The beauty of GraphQL lies in its flexibility, allowing clients to precisely specify the data they need and avoiding the problem of over-fetching or under-fetching data. Clients can request nested fields, traverse relationships, and only receive the exact data they requested.
+
+### ✏️How to write a Query?
+
+Let's fetch the post by `id`.
+
+```graphql
+query {
+  post(id: "1") {
+    id
+    title
+    content
+    author {
+      id
+      name
+    }
+  }
+}
+```
+
+Here, we're requesting the `id`, `title`, `content` fields of the post, and also the `id` and `name` fields of the associated author. The response will include the specified fields for the post and its author.
+
+As we can fetch and read the data, now we will see how we can update and delete the data using mutations.
+
+## 📃What are Mutations?
+
+Mutations in GraphQL allow clients to modify or manipulate data on the server side. By using mutations, clients can seamlessly interact with the server and consistently perform data manipulation operations.
+
+A mutation can contain multiple fields, just like a query. There's one important distinction between queries and mutations, other than the name:
+
+> While query fields are executed in parallel, mutation fields run in series, one after the other.
+
+### ✏️How to write a Mutation?
+
+Considering the above example, we will write the **add**, **update** and **delete** mutations for the post.
+
+- **Adding a New Post**
+    
+    ```graphql
+    mutation {
+      addPost(title: "New Post Title",content:"Lorem ipsum..",authorId: "1") {
+        id
+        title
+        content
+        author {
+          id
+          name
+        }
+      }
+    }
+    ```
+    
+    Here, we're creating a new post by providing the `title`, `content`, and `authorId`. The response includes the `id`, `title`, `content` fields of the newly created post, as well as the `id` and `name` fields of the associated author.
+    
+- **Updating an Existing Post**
+    
+    ```graphql
+    mutation {
+      updatePost(id: "1", title: "Updated Title") {
+        id
+        title
+        content
+      }
+    }
+    ```
+    
+    Here, we're updating the title of the post with id `"1"`. We only provided the `title` argument, but you can also include the `content` argument to update that field as well. The response includes the updated `id`, `title`, and `content` fields of the post.
+    
+- **Deleting a Post**
+    
+    ```graphql
+    mutation {
+      deletePost(id: "1")
+    }
+    ```
+    
+    Here, we're deleting the post with id `"1"`. The response will be the ID of the deleted post, confirming the deletion.
+    
+
+Now, let's explore subscriptions🚀
+
+## 📃What is a Subscription?
+
+**Subscriptions** are a powerful feature of GraphQL that allows clients to receive real-time data changes from the server. By leveraging subscriptions, clients can stay synchronized with the server's data in real time, enabling dynamic and interactive user experiences.
+
+Assuming we have a real-time scenario where we want to receive updates whenever a new post is created, we can use a subscription.
+
+```graphql
+subscription {
+  newPost {
+    id
+    title
+    content
+    author {
+      id
+      name
+    }
+  }
+}
+```
+
+This subscription sets up a connection between the client and the server, and whenever a new post is created, the server will push the updated post data to the client in real time. The response will include the `id`, `title`, `content` fields of the new post, as well as the `id` and `name` fields of the associated author.
+
+These were some of the prominent functions which Graphql provides. Let's see how we can implement Graphql on the client side using **Apollo Client**.
+
+## 📝Implementing GraphQL using Apollo Client.
+
+First, install the necessary dependencies.
+
+```bash
+npm install apollo-boost react-apollo graphql
+```
+
+Sample code considering the above example.
+
+```javascript
+import React from 'react';
+import { ApolloClient, InMemoryCache, ApolloProvider, useQuery, useMutation, useSubscription, gql } from '@apollo/client';
+
+// Create the Apollo Client instance
+const client = new ApolloClient({
+  uri: 'https://localhost:8000/graphql', // Replace with your GraphQL server endpoint
+  cache: new InMemoryCache(),
+});
+
+// Define your GraphQL queries, mutations, and subscriptions
+const GET_POSTS = gql`
+  query {
+    posts {
+      id
+      title
+      content
+      author {
+        id
+        name
+      }
+    }
+  }
+`;
+
+const CREATE_POST = gql`
+  mutation CreatePost($title: String!, $content: String!, $authorId: ID!) {
+    createPost(title: $title, content: $content, authorId: $authorId) {
+      id
+      title
+      content
+      author {
+        id
+        name
+      }
+    }
+  }
+`;
+
+const NEW_POST_SUBSCRIPTION = gql`
+  subscription {
+    newPost {
+      id
+      title
+      content
+      author {
+        id
+        name
+      }
+    }
+  }
+`;
+
+// Example component using Apollo Client
+const BlogPosts = () => {
+  const { loading, error, data } = useQuery(GET_POSTS);
+  const [createPost] = useMutation(CREATE_POST);
+
+  useSubscription(NEW_POST_SUBSCRIPTION, {
+    onSubscriptionData: ({ subscriptionData }) => {
+      // Handle new post received in real-time
+      const newPost = subscriptionData.data.newPost;
+      console.log('New post:', newPost);
+    },
+  });
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
+
+  const { posts } = data;
+
+  return (
+    <div>
+      <ul>
+        {posts.map((post) => (
+          <li key={post.id}>
+            <h3>{post.title}</h3>
+            <p>{post.content}</p>
+            <p>Author: {post.author.name}</p>
+          </li>
+        ))}
+      </ul>
+
+      <button
+        onClick={() => {
+          createPost({
+            variables: {
+              title: 'New Post Title',
+              content: 'Lorem ipsum...',
+              authorId: '1',
+            },
+          });
+        }}
+      >
+        Create Post
+      </button>
+    </div>
+  );
+};
+
+// Wrap your app with the ApolloProvider and render your component
+const App = () => (
+  <ApolloProvider client={client}>
+    <BlogPosts />
+  </ApolloProvider>
+);
+
+export default App;
+```
+
+# Conclusion
+
+Throughout this blog, we have covered the core features of GraphQL and provided practical examples of its implementation. GraphQL addresses the limitations and challenges of RESTful APIs by offering a declarative querying approach.
+
+Clients can request exactly the data they need, reducing over-fetching and under-fetching of data. With a strong type system and a centralized schema, GraphQL provides precise data structures, enhancing communication and reducing errors between frontend and backend developers.
+
+One of the standout features of GraphQL is its ability to handle real-time updates through subscriptions. This makes it ideal for applications requiring live collaboration or data streaming. By subscribing to specific data changes, clients can receive real-time updates, creating dynamic and interactive user experiences.
+
+Apollo Client, a popular GraphQL client library, simplifies the implementation of GraphQL in JavaScript. It enables effortless querying, mutations, and subscriptions, allowing developers to harness the benefits of GraphQL in their applications quickly. By embracing GraphQL, you unlock a world of possibilities for building efficient, scalable, and real-time applications.
+
+---
+
+**That was it for this blog 🙏, I encourage you to delve deeper into its** [**documentation**](https://graphql.org/learn/)**,** [**tutorials**](https://www.youtube.com/playlist?list=PLpPqplz6dKxXICtNgHY1tiCPau_AwWAJU)**, and resources available online. You also refer to this** [**project**](https://github.com/Diveshmahajan4/Project-Pilot) **to learn more.**
+
+**I hope you enjoyed it. Do comment with your thoughts about this blog.**
+
+If you’re a regular reader, thank you, you’re a big part of the reason I’ve been able to share my learnings with you.
+
+You can connect with me on [**Twitter**](https://twitter.com/diveshtwt) and [**LinkedIn**](https://www.linkedin.com/in/divesh-mahajan-43a585216/).
+
+**Follow me for more such blogs** 😊.
+
+**Happy Coding✌️!!**

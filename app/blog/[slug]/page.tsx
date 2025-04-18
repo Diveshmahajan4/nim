@@ -1,6 +1,8 @@
 import { notFound } from 'next/navigation'
 import { formatDate, getBlogPosts } from '../utils'
 import { CustomMDX } from '@/components/mdx'
+import { ChevronLeftIcon } from 'lucide-react'
+import Link from 'next/link'
 
 const baseUrl  = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
 
@@ -61,6 +63,10 @@ export default function Blog({ params }) {
 
   return (
     <section>
+      <Link href="/blog" className="flex items-center dark:text-white hover:underline mb-4">
+        <ChevronLeftIcon className="w-4 h-4 mr-1" />
+        Back
+      </Link>
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -91,7 +97,7 @@ export default function Blog({ params }) {
           {formatDate(post.metadata.publishedAt)}
         </p>
       </div>
-      <article className="prose text-white dark:prose-invert prose-a:text-blue-500 prose-a:dark:text-blue-400 prose-a:underline prose-a:decoration-2 prose-a:decoration-blue-500 hover:prose-a:decoration-blue-400">
+      <article className="prose dark:text-white dark:prose-invert prose-a:text-blue-500 prose-a:dark:text-blue-400 prose-a:underline prose-a:decoration-2 prose-a:decoration-blue-500 hover:prose-a:decoration-blue-400">
         <CustomMDX source={post.content} />
       </article>
     </section>
