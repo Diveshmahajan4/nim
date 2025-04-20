@@ -78,7 +78,7 @@ function MagneticSocialLink({
 export default function Personal() {
   return (
     <motion.main
-      className="space-y-24"
+      className="space-y-20"
       variants={VARIANTS_CONTAINER}
       initial="hidden"
       animate="visible"
@@ -87,7 +87,7 @@ export default function Personal() {
         <div>
           <Link
             href="/"
-            className="text-2xl font-medium text-black dark:text-white"
+            className="text-3xl font-medium text-black dark:text-white"
           >
             Divesh Mahajan
           </Link>
@@ -117,10 +117,21 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <div className="flex-1">
-          <p className="text-zinc-600 dark:text-zinc-400">
-            Focused on creating intuitive and performant web experiences.
-            Bridging the gap between design and development.
+        <div className="gap-2 space-y-7 text-lg">
+          <p className="text-zinc-600 dark:text-zinc-200">
+          I&apos;m a software engineer who enjoys designing and building scalable web applications.
+          </p>
+          <p className="text-zinc-600 dark:text-zinc-200">
+          Previously, I worked with IIT Hyderabad as a Research Intern, focusing on machine learning-based optimizations in compilers and static code analyzers.
+          </p>
+          <p className="text-zinc-600 dark:text-zinc-200">
+          I also interned at Deutsche Bank, where I contributed to a document generation platform. My role involved implementing multiple features using Angular and Spring Boot, helping enhance both the platform&apos;s performance and usability.
+          </p>
+          <p className="text-zinc-600 dark:text-zinc-200">
+          I like to explore and contribute to open source projects, and I write blogs as short notes on new topics I&apos;m learning along the way. I&apos;m also an active participant in the developer community — I enjoy attending and speaking at community events, and I regularly mentor juniors to help them land great opportunities.
+          </p>
+          <p className="text-zinc-600 dark:text-zinc-200">
+          I'm always excited to take on challenging problems and build impactful solutions through code :)
           </p>
         </div>
       </motion.section>
@@ -245,7 +256,7 @@ export default function Personal() {
           </AnimatedBackground>
           <div className="mt-8 text-center">
             <Link
-              href="/projects"
+              href="/blog"
               className="relative inline-block overflow-hidden rounded-lg bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
             >
               <Spotlight

@@ -117,23 +117,23 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
 
 export const BLOG_POSTS: BlogPost[] = [
   {
-    title: 'Exploring the Intersection of Design, AI, and Design Engineering',
-    description: 'How AI is changing the way we design',
-    link: '/blog/exploring-the-intersection-of-design-ai-and-design-engineering',
+    title: 'Introduction to Callbacks Promise an Async Await Functions in JavaScript',
+    description: 'Understand how JavaScript handles asynchronous code using callbacks, promises, and async/await.',
+    link: '/blog/Introduction-to-Callbacks-Promises-and-Async-Await-Functions-in-JavaScript',
     uid: 'blog-1',
   },
   {
-    title: 'Why I left my job to start my own company',
+    title: 'Exploring Middleware in JavaScript Building Modular and Extensible Applications',
     description:
-      'A deep dive into my decision to leave my job and start my own company',
-    link: '/blog/exploring-the-intersection-of-design-ai-and-design-engineering',
+      'A simple explanation of Middleware in JavaScript',
+    link: '/blog/Exploring-Middleware-in-JavaScript-Building-Modular-and-Extensible-Applications',
     uid: 'blog-2',
   },
   {
-    title: 'What I learned from my first year of freelancing',
+    title: 'An Introduction to GraphQL Building Better APIs with GraphQL',
     description:
-      'A look back at my first year of freelancing and what I learned',
-    link: '/blog/exploring-the-intersection-of-design-ai-and-design-engineering',
+      'A beginner-friendly guide to what GraphQL is and how it helps in creating flexible APIs.',
+    link: '/blog/An-Introduction-to-GraphQL-Building-Better-APIs-with-GraphQL',
     uid: 'blog-3',
   },
 ]

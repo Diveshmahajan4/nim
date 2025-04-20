@@ -26,44 +26,32 @@ const THEMES_OPTIONS = [
 
 function ThemeSwitch() {
   const [mounted, setMounted] = useState(false)
-  const { theme, setTheme } = useTheme()
+  const { theme, setTheme, resolvedTheme } = useTheme()
 
   useEffect(() => {
     setMounted(true)
-  }, [])
+    // Set dark theme by default on mount if not already set
+    if (!theme) {
+      setTheme('dark')
+    }
+  }, [theme, setTheme])
 
-  if (!mounted) {
-    return null
+  if (!mounted) return null
+
+  const isDark = resolvedTheme === 'dark'
+
+  const toggleTheme = () => {
+    setTheme(isDark ? 'light' : 'dark')
   }
 
   return (
-    <AnimatedBackground
-      className="pointer-events-none rounded-lg bg-zinc-100 dark:bg-zinc-800"
-      defaultValue={theme}
-      transition={{
-        type: 'spring',
-        bounce: 0,
-        duration: 0.2,
-      }}
-      enableHover={false}
-      onValueChange={(id) => {
-        setTheme(id as string)
-      }}
+    <button
+      onClick={toggleTheme}
+      className="inline-flex h-7 w-7 items-center justify-center rounded-lg border border-zinc-300 bg-white text-zinc-800 shadow-sm transition-colors dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-200"
+      aria-label="Toggle theme"
     >
-      {THEMES_OPTIONS.map((theme) => {
-        return (
-          <button
-            key={theme.id}
-            className="inline-flex h-7 w-7 items-center justify-center text-zinc-500 transition-colors duration-100 focus-visible:outline-2 data-[checked=true]:text-zinc-950 dark:text-zinc-400 dark:data-[checked=true]:text-zinc-50"
-            type="button"
-            aria-label={`Switch to ${theme.label} theme`}
-            data-id={theme.id}
-          >
-            {theme.icon}
-          </button>
-        )
-      })}
-    </AnimatedBackground>
+      {isDark ? <SunIcon className="h-5 w-5" /> : <MoonIcon className="h-5 w-5" />}
+    </button>
   )
 }
 
