@@ -1,4 +1,7 @@
+import { Bolt, BookImage, CalendarRange, FlameKindling, Landmark, LucideLampDesk, PenTool } from "lucide-react"
+
 type Project = {
+  icon: any
   name: string
   description: string
   link: string
@@ -37,6 +40,7 @@ type Hackathon = {
 
 export const PROJECTS: Project[] = [
   {
+    icon: Bolt,
     name: 'Build With AI',
     description:
       'A collection of 10K+ AI tools to help you build better products.',
@@ -46,6 +50,7 @@ export const PROJECTS: Project[] = [
     id: 'project1',
   },
   {
+    icon: Landmark,
     name: 'Drooul',
     description: 'A digital marketplace for UI Kits, Templates and Icons.',
     link: 'https://github.com/Diveshmahajan4/drooul',
@@ -54,6 +59,7 @@ export const PROJECTS: Project[] = [
     id: 'project2',
   },
   {
+    icon: LucideLampDesk,
     name: 'Urbancasa',
     description: 'A furniture catalog website with a modern design.',
     link: 'https://urbancasa.vercel.app/',
@@ -62,6 +68,7 @@ export const PROJECTS: Project[] = [
     id: 'project3',
   },
   {
+    icon: FlameKindling,
     name: 'AnimeHub',
     description: 'Anime streamin platform with clean and minimal design.',
     link: 'https://github.com/Diveshmahajan4/AnimeHub',
@@ -70,6 +77,7 @@ export const PROJECTS: Project[] = [
     id: 'project4',
   },
   {
+    icon: BookImage,
     name: 'Chatter',
     description: 'A blogging platform for developers to share their thoughts.',
     link: 'https://github.com/Diveshmahajan4/Chatter-A-Blogging-Website',
@@ -78,6 +86,7 @@ export const PROJECTS: Project[] = [
     id: 'project5',
   },
   {
+    icon: CalendarRange,
     name: 'Project Pilot',
     description: 'A project management app for freelancers and teams.',
     link: 'https://github.com/Diveshmahajan4/Project-Pilot',

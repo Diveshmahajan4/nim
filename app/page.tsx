@@ -143,24 +143,31 @@ export default function Personal() {
         <h3 className="mb-5 text-lg font-medium">Selected Projects</h3>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {PROJECTS.slice(0, 4).map((project) => (
-            <div key={project.name} className="space-y-2">
-              <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
-                <ProjectVideo src={project.video} />
+            <a
+              className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              key={project.id}
+            >
+              <Spotlight
+                className="from-blue-900 via-blue-800 to-blue-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
+                size={64}
+              />
+              <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-zinc-900">
+                <div className="relative flex w-full flex-col justify-between">
+                <div className='m-2'>{<project.icon className='h-7 w-7 group-hover:h-8 group-hover:w-8 transition-all duration-200'/>}</div>
+                  <div>
+                    <h4 className="font-normal dark:text-zinc-100">
+                      {project.name}
+                    </h4>
+                    <p className="text-zinc-500 dark:text-zinc-400">
+                      {project.description}
+                    </p>
+                  </div>
+                </div>
               </div>
-              <div className="px-1">
-                <a
-                  className="font-base group relative inline-block font-[450] text-zinc-900 dark:text-zinc-50"
-                  href={project.link}
-                  target="_blank"
-                >
-                  {project.name}
-                  <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full"></span>
-                </a>
-                <p className="text-base text-zinc-600 dark:text-zinc-400">
-                  {project.description}
-                </p>
-              </div>
-            </div>
+            </a>
           ))}
         </div>
 
@@ -280,7 +287,7 @@ export default function Personal() {
       >
         <WarpBackground>
           <div className="bg-white py-8 px-8 text-start text-zinc-900 rounded-lg dark:bg-zinc-900 dark:text-white border border-zinc-200 dark:border-zinc-700">  
-            <p className='text-lg font-bold'>Want to hire me as a freelancer? Let's discuss.</p>
+            <p className='text-lg font-bold'>Want to hire me as a developer? Let's discuss.</p>
             <p>Drop your message and let's discuss about your project.</p>
             {/* <button className='my-3'>
             <MagneticSocialLink link={'#'}>
