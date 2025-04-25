@@ -1,11 +1,16 @@
 import Link from 'next/link'
-import Image from 'next/image'
-import { MDXRemote } from 'next-mdx-remote/rsc'
+import Image, { ImageProps } from 'next/image'
+import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote/rsc'
 import { highlight } from 'sugar-high'
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { useMDXComponents } from '@/mdx-components'
 
-function Table({ data }) {
+type TableData = {
+  headers: string[]
+  rows: string[][]
+}
+
+function Table({ data }: { data: TableData }) {
   let headers = data.headers.map((header, index) => (
     <th key={index}>{header}</th>
   ))
@@ -27,13 +32,18 @@ function Table({ data }) {
   )
 }
 
-function CustomLink(props) {
-  let href = props.href
+type CustomLinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+  href: string
+  children: ReactNode
+}
+
+function CustomLink(props: CustomLinkProps) {
+  const { href, children, ...rest } = props
 
   if (href.startsWith('/')) {
     return (
-      <Link href={href} {...props}>
-        {props.children}
+      <Link href={href} {...rest}>
+        {children}
       </Link>
     )
   }
@@ -45,29 +55,41 @@ function CustomLink(props) {
   return <a target="_blank" rel="noopener noreferrer" {...props} />
 }
 
-function RoundedImage(props) {
-  return <Image alt={props.alt} className="rounded-lg" {...props} />
+function RoundedImage(props: ImageProps) {
+  return <Image className="rounded-lg" {...props} />
 }
 
-function Code({ children, ...props }) {
+type CodeProps = React.HTMLAttributes<HTMLElement> & {
+  children: string
+}
+
+function Code({ children, ...props }: CodeProps) {
   let codeHTML = highlight(children)
   return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />
 }
 
-function slugify(str) {
+function slugify(str: string): string {
   return str
-    .toString()
     .toLowerCase()
-    .trim() // Remove whitespace from both ends of a string
-    .replace(/\s+/g, '-') // Replace spaces with -
-    .replace(/&/g, '-and-') // Replace & with 'and'
-    .replace(/[^\w\-]+/g, '') // Remove all non-word characters except for -
-    .replace(/\-\-+/g, '-') // Replace multiple - with single -
+    .trim()
+    .replace(/\s+/g, '-')
+    .replace(/&/g, '-and-')
+    .replace(/[^\w\-]+/g, '')
+    .replace(/\-\-+/g, '-')
 }
 
-function createHeading(level) {
-  const Heading = ({ children }) => {
-    let slug = slugify(children)
+function createHeading(level: number) {
+  const Heading = ({ children }: { children: React.ReactNode }) => {
+    // Convert children to plain text
+    const childText =
+      typeof children === 'string'
+        ? children
+        : Array.isArray(children)
+          ? children.map(child => (typeof child === 'string' ? child : '')).join('')
+          : '';
+
+    const slug = slugify(childText);
+
     return React.createElement(
       `h${level}`,
       { id: slug },
@@ -83,11 +105,10 @@ function createHeading(level) {
   }
 
   Heading.displayName = `Heading${level}`
-
   return Heading
 }
 
-let components = {
+const components = {
   h1: createHeading(1),
   h2: createHeading(2),
   h3: createHeading(3),
@@ -100,7 +121,11 @@ let components = {
   Table,
 }
 
-export function CustomMDX(props) {
+type CustomMDXProps = MDXRemoteProps & {
+  components?: Record<string, React.ComponentType<any>>
+}
+
+export function CustomMDX(props: CustomMDXProps) {
   const extendedComponents = useMDXComponents(components)
   return (
     <MDXRemote

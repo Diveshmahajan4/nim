@@ -141,14 +141,14 @@ export default function Personal() {
         transition={TRANSITION_SECTION}
       >
         <h3 className="mb-5 text-lg font-medium">Selected Projects</h3>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           {PROJECTS.slice(0, 4).map((project) => (
             <a
               className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              key={project.id}
+              key={project.name}
             >
               <Spotlight
                 className="from-blue-900 via-blue-800 to-blue-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"

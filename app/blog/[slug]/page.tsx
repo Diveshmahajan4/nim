@@ -14,7 +14,7 @@ export async function generateStaticParams() {
   }))
 }
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata({ params }: {params: Promise<{ slug: string }>}) {
   const { slug } = await params
   let post = getBlogPosts().find((post) => post.slug === slug)
   if (!post) {
@@ -55,7 +55,7 @@ export async function generateMetadata({ params }) {
   }
 }
 
-export default async function Blog({ params }) {
+export default async function Blog({ params }: {params: Promise<{ slug: string }>}) {
   const { slug } = await params
   let post = getBlogPosts().find((post) => post.slug === slug)
 
@@ -99,7 +99,7 @@ export default async function Blog({ params }) {
           {formatDate(post.metadata.publishedAt)}
         </p>
       </div>
-      <article className="prose dark:text-white dark:prose-invert prose-a:text-blue-500 prose-a:dark:text-blue-400 prose-a:underline prose-a:decoration-2 prose-a:decoration-blue-500 hover:prose-a:decoration-blue-400">
+      <article className="prose text-lg dark:text-white dark:prose-invert prose-a:text-blue-500 prose-a:dark:text-blue-400 prose-a:underline prose-a:decoration-2 prose-a:decoration-blue-500 hover:prose-a:decoration-blue-400">
         <CustomMDX source={post.content} />
       </article>
     </section>

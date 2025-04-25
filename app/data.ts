@@ -1,4 +1,4 @@
-import { Bolt, BookImage, CalendarRange, FlameKindling, Landmark, LucideLampDesk, PenTool } from "lucide-react"
+import { ArrowLeftRight, AudioLines, Bolt, BookImage, CalendarRange, FlameKindling, Landmark, LucideLampDesk, PenTool } from "lucide-react"
 
 type Project = {
   icon: any
@@ -92,9 +92,26 @@ export const PROJECTS: Project[] = [
     link: 'https://github.com/Diveshmahajan4/Project-Pilot',
     video:
       'https://res.cloudinary.com/read-cv/video/upload/t_v_b/v1/1/profileItems/W2azTw5BVbMXfj7F53G92hMVIn32/XSfIvT7BUWbPRXhrbLed/ee6871c9-8400-49d2-8be9-e32675eabf7e.mp4?_a=DATAdtAAZAA0',
-    id: 'project5',
+    id: 'project6',
   },
-
+  {
+    icon: AudioLines,
+    name: 'Voice Chat App',
+    description: 'A simple voice chat app using the Agora RTC And RTM Web SDK.',
+    link: 'https://github.com/Diveshmahajan4/Voice-Chat-App',
+    video:
+      'https://res.cloudinary.com/read-cv/video/upload/t_v_b/v1/1/profileItems/W2azTw5BVbMXfj7F53G92hMVIn32/XSfIvT7BUWbPRXhrbLed/ee6871c9-8400-49d2-8be9-e32675eabf7e.mp4?_a=DATAdtAAZAA0',
+    id: 'project7',
+  },
+  {
+    icon: ArrowLeftRight,
+    name: 'Terrashift',
+    description: 'A cloud infrastructure translation tool that converts Terraform code from AWS to GCP configurations.',
+    link: 'https://github.com/Diveshmahajan4/terrashift',
+    video:
+      'https://res.cloudinary.com/read-cv/video/upload/t_v_b/v1/1/profileItems/W2azTw5BVbMXfj7F53G92hMVIn32/XSfIvT7BUWbPRXhrbLed/ee6871c9-8400-49d2-8be9-e32675eabf7e.mp4?_a=DATAdtAAZAA0',
+    id: 'project8',
+  },
 ]
 
 export const WORK_EXPERIENCE: WorkExperience[] = [
